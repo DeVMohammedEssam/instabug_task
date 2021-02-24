@@ -1,5 +1,5 @@
 <template>
-  <h1>instabug task</h1>
+  test
 </template>
 
 <script>

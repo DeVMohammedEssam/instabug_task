@@ -1,30 +1,46 @@
 <template>
   <nav class="headbar">
     <i class="fab fa-youtube headbar__logo"></i>
-    <input
-      type="text"
-      v-model="searchText"
-      class="headbar__searchInput input--simple"
-    />
-    <button class="btn--blank ">
-      <i class="fa fa-search headbar__searchIcon" />
-    </button>
+    <form @submit="handleSearchSubmit">
+      <input
+        type="text"
+        ref="searchTextInput"
+        class="headbar__searchInput input--simple"
+      />
+      <button class="btn--blank" type="submit">
+        <i class="fa fa-search headbar__searchIcon" />
+      </button>
+    </form>
   </nav>
+  <div class="headbar__mobileFilters">
+    <mobile-filters />
+  </div>
+  <div class="headbar__desktopFilters">
+    <desktop-filters />
+  </div>
 </template>
 
 <script>
-import { ref, watch } from "vue";
-import { useRouter } from "vue-router";
+import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import MobileFilters from "@Components/SearchFilters/MobileFilters.vue";
+import DesktopFilters from "@Components/SearchFilters/DesktopFilters.vue";
 export default {
+  components: { MobileFilters, DesktopFilters },
   setup() {
     const router = useRouter();
-    const searchText = ref("");
+    const route = useRoute();
+    const searchTextInput = ref();
 
-    watch(searchText, value => {
-      router.push(`?query=${value}`);
-    });
+    const handleSearchSubmit = e => {
+      e.preventDefault();
+      const { value } = searchTextInput.value;
+      router.push({ query: { ...route.query, q: value } });
+    };
+
     return {
-      searchText
+      searchTextInput,
+      handleSearchSubmit
     };
   }
 };
@@ -51,6 +67,17 @@ export default {
   &__searchIcon {
     color: #fff;
     font-size: 16px;
+  }
+  &__mobileFilters {
+    @include useMedia("md") {
+      display: none;
+    }
+  }
+  &__desktopFilters {
+    display: none;
+    @include useMedia("md") {
+      display: block;
+    }
   }
 }
 </style>
