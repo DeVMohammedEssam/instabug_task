@@ -7,10 +7,6 @@ const routes = [
     name: "Home",
     component: Home
   },
-  {
-    path: "/",
-    redirect: "/search"
-  },
   { path: "/:pathMatch(.*)*", redirect: "/search" }
 ];
 
