@@ -1,4 +1,5 @@
 <template>
+  <Headbar />
   <router-view v-if="!gapiLoading" />
   <PageLoader v-else />
 </template>
@@ -7,7 +8,7 @@
 import { ref, onBeforeMount } from "vue";
 import { LoadGapiService } from "@Services/gapi";
 import PageLoader from "@Components/Loaders/PageLoader.vue";
-
+import Headbar from "@Components/navigation/Headbar/Headbar.vue";
 export default {
   setup() {
     const gapiLoading = ref(true);
@@ -17,12 +18,18 @@ export default {
 
     return {
       gapiLoading,
-      PageLoader
+      PageLoader,
+      Headbar
     };
   }
 };
 </script>
 <style lang="scss">
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

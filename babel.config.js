@@ -10,7 +10,8 @@ module.exports = {
           "@Views": "./src/views",
           "@Assets": "./src/assets",
           "@Services": "./src/services",
-          "@Composable": "./src/composable"
+          "@Composable": "./src/composable",
+          "@Styles": "./src/scss"
         }
       }
     ]
