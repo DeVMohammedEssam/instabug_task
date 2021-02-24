@@ -1,0 +1,19 @@
+.input {
+  &--simple {
+    border: none;
+    outline: none;
+    border-radius: 1px;
+    color: #444;
+  }
+}
+.select {
+  &--custom {
+    padding: 8px;
+    min-width: 100px;
+    margin: 0 5px;
+    background: rgb(246, 246, 246);
+    border: 1px solid #efefef;
+    box-shadow: 0 0 3px rgba(#333, 0.2);
+    border-radius: 3px;
+  }
+}

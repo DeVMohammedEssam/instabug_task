@@ -3,10 +3,11 @@ import Home from "@Views/Home.vue";
 
 const routes = [
   {
-    path: "/",
+    path: "/search",
     name: "Home",
     component: Home
-  }
+  },
+  { path: "/:pathMatch(.*)*", redirect: "/search" }
 ];
 
 const router = createRouter({
